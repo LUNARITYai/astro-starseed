@@ -1,0 +1,196 @@
+---
+import "../styles/global.css";
+import { SITE_NAME, SITE_TAGLINE } from "@/site.config";
+import {
+  getLangFromUrl,
+  getAlternateUrl,
+  LOCALES,
+  type Locale,
+} from "@/i18n/ui";
+import { Toaster } from "@/components/ui/sonner";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  pageType?: "website" | "article";
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  articleTags?: string[];
+  articleAuthor?: string;
+  additionalJsonLd?: Record<string, unknown>;
+  lang?: Locale;
+}
+
+const {
+  title,
+  description = `${SITE_NAME} - ${SITE_TAGLINE}`,
+  image,
+  pageType = "website",
+  publishedTime,
+  modifiedTime,
+  articleTags = [],
+  articleAuthor,
+  additionalJsonLd,
+  lang: langProp,
+} = Astro.props;
+
+const lang: Locale = langProp ?? getLangFromUrl(Astro.url);
+const siteBase = Astro.site?.toString().replace(/\/$/, "") ?? "";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const publishedIso = publishedTime?.toISOString();
+const modifiedIso = modifiedTime?.toISOString();
+
+const ogLocaleMap: Record<Locale, string> = {
+  en: "en_US",
+};
+const ogLocale = ogLocaleMap[lang];
+
+const envLabel = import.meta.env.DEV
+  ? "LOCAL"
+  : import.meta.env.PUBLIC_ENV_LABEL || "";
+const titlePrefix = envLabel ? `[${envLabel}] ` : "";
+
+const ogImage = image ?? "/og-default.png";
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+
+// Build BreadcrumbList from URL path
+const pathSegments = Astro.url.pathname
+  .replace(/\/$/, "")
+  .split("/")
+  .filter(Boolean);
+// Strip locale prefix for breadcrumb names
+const startIndex = LOCALES.includes(pathSegments[0] as Locale) ? 1 : 0;
+const breadcrumbItems = [
+  { "@type": "ListItem", position: 1, name: "Home", item: siteBase + "/" },
+  ...pathSegments.slice(startIndex).map((segment, i) => ({
+    "@type": "ListItem" as const,
+    position: i + 2,
+    name: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "),
+    item:
+      siteBase +
+      "/" +
+      pathSegments.slice(0, startIndex + i + 1).join("/") +
+      "/",
+  })),
+];
+const breadcrumbJsonLd =
+  breadcrumbItems.length > 1
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbItems,
+      }
+    : null;
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: Astro.site?.toString(),
+  inLanguage: lang,
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{titlePrefix}{title}</title>
+
+    <!-- hreflang alternate links for SEO -->
+    {
+      LOCALES.map((locale) => (
+        <link
+          rel="alternate"
+          hreflang={locale}
+          href={getAlternateUrl(Astro.url, locale, siteBase)}
+        />
+      ))
+    }
+    <!-- x-default points to the English (default) version -->
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={getAlternateUrl(Astro.url, "en", siteBase)}
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={pageType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImageUrl} />
+    {
+      publishedIso && (
+        <meta property="article:published_time" content={publishedIso} />
+      )
+    }
+    {
+      modifiedIso && (
+        <meta property="article:modified_time" content={modifiedIso} />
+      )
+    }
+    {
+      articleAuthor && (
+        <meta property="article:author" content={articleAuthor} />
+      )
+    }
+    {articleTags.map((tag) => <meta property="article:tag" content={tag} />)}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- JSON-LD Structured Data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationJsonLd)}
+    />
+    {
+      breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(breadcrumbJsonLd)}
+        />
+      )
+    }
+    {
+      additionalJsonLd && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(additionalJsonLd)}
+        />
+      )
+    }
+
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      (function () {
+        const theme = localStorage.getItem("theme") || "system";
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        const appliedTheme = theme === "system" ? systemTheme : theme;
+        document.documentElement.classList.add(appliedTheme);
+      })();
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-background text-foreground font-sans antialiased"
+  >
+    <slot />
+    <Toaster client:load />
+  </body>
+</html>

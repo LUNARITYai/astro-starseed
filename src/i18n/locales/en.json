@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "allRightsReserved": "All rights reserved"
+  },
+  "search": {
+    "label": "Search",
+    "placeholder": "Search...",
+    "noResults": "No results found.",
+    "navigate": "to navigate",
+    "select": "to select",
+    "close": "to close"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "en": "EN"
+  },
+  "meta": {
+    "defaultDescription": "Built with Astro, React, and Shadcn UI"
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "description": "Get in touch. Send a message or start a conversation.",
+    "heading": "Get in touch",
+    "subheading": "Have a question or want to work together? Reach out below.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submit": "Send Message"
+    }
+  }
+}
