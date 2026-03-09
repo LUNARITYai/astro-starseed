@@ -1,6 +1,14 @@
 # astro-starseed
 
+<p align="center">
+  <img src="docs/images/banner.png" alt="astro-starseed banner" width="100%" />
+</p>
+
 A modern Astro starter template by [LUNARITY](https://lunarity.ai) — production-ready, opinionated, and built for speed.
+
+<p align="center">
+  <img src="docs/images/preview.png" alt="astro-starseed preview" width="100%" />
+</p>
 
 ## Stack
 
@@ -99,6 +107,12 @@ src/
 Design tokens are defined as CSS variables in `src/styles/global.css` using the OKLch color space. Both `:root` (light) and `.dark` variants are provided. All shadcn/ui components consume these variables automatically.
 
 To customise, edit the `--background`, `--primary`, `--accent` (etc.) values in `global.css`.
+
+## Local MCP overrides
+
+Copy `.mcp.json.local.example` → `.mcp.json.local` and adjust paths for
+machine-specific MCP servers (e.g. `filesystem`). The `.local` file is
+gitignored.
 
 ## License
 

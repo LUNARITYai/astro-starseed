@@ -53,3 +53,9 @@ Playwright config (`playwright.config.ts`) targets `http://localhost:4321`. Test
 ## Package manager
 
 Use **pnpm** exclusively. Node 22.x is enforced via `.npmrc` (`engine-strict=true`).
+
+## Local MCP overrides
+
+Copy `.mcp.json.local.example` → `.mcp.json.local` and adjust paths for
+machine-specific MCP servers (e.g. `filesystem`). The `.local` file is
+gitignored.
