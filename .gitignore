@@ -30,3 +30,6 @@ pnpm-debug.log*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# local MCP overrides (machine-specific)
+.mcp.json.local

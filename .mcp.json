@@ -7,10 +7,6 @@
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"]
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/lunarity/Projects"]
     }
   }
 }
