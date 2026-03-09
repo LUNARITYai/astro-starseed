@@ -1,0 +1,41 @@
+# Windsurf Rules — Astro Starseed
+
+## Stack
+
+- **Framework:** Astro 5 hybrid (static + React 19 islands)
+- **Styling:** Tailwind CSS 4 + OKLch design tokens
+- **UI components:** shadcn/ui (Radix) in `src/components/ui/`
+- **Animations:** Framer Motion 12
+- **i18n:** Custom type-safe URL-based routing
+- **Testing:** Playwright E2E
+- **Package manager:** pnpm (Node 22.x, enforced)
+
+## Rules
+
+### Code style
+- TypeScript strict mode — no `any`.
+- Use `cn()` from `src/lib/utils.ts` for all class merging.
+- Never hardcode hex colors — extend OKLch tokens in `src/styles/global.css`.
+- Never hardcode site name/URL — import from `src/site.config.ts`.
+
+### Components
+- Static/layout → `.astro` files.
+- Interactive → `.tsx` React files with Astro client directives.
+- shadcn primitives → `pnpm dlx shadcn add <name>`. Never edit `src/components/ui/` by hand.
+
+### i18n
+- Translations in `src/i18n/locales/<lang>.json`.
+- Helpers in `src/i18n/ui.ts`: `useTranslations()`, `getLangFromUrl()`, `getLocalizedPath()`.
+
+### Package manager
+- Use `pnpm` exclusively. Never `npm` or `yarn`.
+
+## Commands
+
+```bash
+pnpm dev              # http://localhost:4321
+pnpm build            # production build
+pnpm format           # Prettier
+pnpm test:e2e         # Playwright headless
+pnpm test:e2e:ui      # Playwright with UI
+```

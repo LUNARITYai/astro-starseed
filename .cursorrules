@@ -1,0 +1,42 @@
+# Cursor Rules — Astro Starseed
+
+## Stack
+
+- Astro 5 (hybrid rendering) + React 19 islands
+- Tailwind CSS 4 with OKLch design tokens
+- shadcn/ui (Radix primitives) in `src/components/ui/`
+- Framer Motion 12 for animations
+- TypeScript strict mode
+- pnpm as the only package manager (Node 22.x)
+
+## Rules
+
+### General
+- Use `pnpm` exclusively — never `npm` or `yarn`.
+- All TypeScript must be strictly typed — no `any`.
+- Run `pnpm format` (Prettier) before committing.
+
+### Components
+- `.astro` files for static/layout content.
+- `.tsx` files for interactive React islands — always add a client directive (`client:load`, `client:visible`, `client:idle`).
+- shadcn/ui primitives live in `src/components/ui/` — add via `pnpm dlx shadcn add <component>`, do NOT edit manually.
+- Custom components go directly in `src/components/`.
+
+### Styling
+- Use `cn()` from `src/lib/utils.ts` for all conditional class merging (clsx + tailwind-merge).
+- Never use raw hex colors. All colors must use CSS variables defined in `src/styles/global.css`.
+- Design tokens are OKLch CSS variables on `:root` and `.dark` — extend there, not inline.
+
+### Configuration & metadata
+- Import site-wide metadata from `src/site.config.ts` — never hardcode strings like site name or URL.
+- Astro config (integrations, i18n, output) is in `astro.config.mjs`.
+
+### i18n
+- Translation keys go in `src/i18n/locales/<lang>.json`.
+- Use helpers from `src/i18n/ui.ts`: `useTranslations()`, `getLangFromUrl()`, `getLocalizedPath()`.
+- Default locale `en` has no URL prefix.
+
+### Testing
+- E2E tests use Playwright, located in `tests/`.
+- Run: `pnpm test:e2e` (headless) or `pnpm test:e2e:ui` (interactive).
+- Dev server must be running at `http://localhost:4321` before running tests.
