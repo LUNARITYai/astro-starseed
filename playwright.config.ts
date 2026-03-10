@@ -1,5 +1,16 @@
 import { defineConfig, devices } from "@playwright/test";
 
+function getLatestIPhone(): string {
+  const iPhoneModels = Object.keys(devices)
+    .filter((name) => /^iPhone \d+$/.test(name))
+    .sort((a, b) => {
+      const numA = parseInt(a.match(/\d+/)![0]);
+      const numB = parseInt(b.match(/\d+/)![0]);
+      return numA - numB;
+    });
+  return iPhoneModels[iPhoneModels.length - 1];
+}
+
 /**
  * Playwright E2E testing configuration
  * Tests run against the built static site via preview server
@@ -61,8 +72,8 @@ export default defineConfig({
     {
       name: "chromium-mobile",
       use: {
-        ...devices["iPhone 12"],
-        viewport: { width: 375, height: 667 },
+        ...devices[getLatestIPhone()],
+        defaultBrowserType: "chromium",
       },
     },
   ],
