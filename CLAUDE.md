@@ -48,7 +48,7 @@ Schemas are defined in `src/content/config.ts` using Zod. MDX is supported via `
 
 ### Testing
 
-Playwright config (`playwright.config.ts`) targets `http://localhost:4321`. Tests run against Desktop Chromium (1280×720) and Mobile iPhone 12 (375×667). The dev server must be running before executing tests locally, or use `webServer` config to auto-start.
+Playwright config (`playwright.config.ts`) targets `http://localhost:4321`. Tests run against Desktop Chromium (1280×720) and Mobile (latest iPhone model auto-selected from Playwright's device registry). The dev server must be running before executing tests locally, or use `webServer` config to auto-start.
 
 ## Package manager
 
