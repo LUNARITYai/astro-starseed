@@ -1,0 +1,88 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer.astro";
+import { useTranslations, getLangFromUrl } from "@/i18n/ui";
+import { SITE_NAME } from "@/site.config";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={`${t("contact.metaTitle")} — ${SITE_NAME}`}
+  description={t("contact.description")}
+  lang={lang}
+>
+  <Navbar
+    lang={lang}
+    labels={{
+      home: t("nav.home"),
+      about: t("nav.about"),
+      contact: t("nav.contact"),
+    }}
+    client:load
+  />
+  <main class="pt-32 pb-20">
+    <div class="container mx-auto px-4 max-w-xl">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        {t("contact.heading")}
+      </h1>
+      <p class="text-lg text-muted-foreground mb-10">
+        {t("contact.subheading")}
+      </p>
+
+      <form class="space-y-6" data-astro-reload>
+        <div class="space-y-2">
+          <label for="name" class="text-sm font-medium leading-none">
+            {t("contact.form.name")}
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder={t("contact.form.namePlaceholder")}
+            required
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label for="email" class="text-sm font-medium leading-none">
+            {t("contact.form.email")}
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder={t("contact.form.emailPlaceholder")}
+            required
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label for="message" class="text-sm font-medium leading-none">
+            {t("contact.form.message")}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder={t("contact.form.messagePlaceholder")}
+            required
+            class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[120px] resize-y"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
+          {t("contact.form.submit")}
+        </button>
+      </form>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>

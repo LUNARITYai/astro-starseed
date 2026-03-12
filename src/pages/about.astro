@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer.astro";
+import { useTranslations, getLangFromUrl } from "@/i18n/ui";
+import { SITE_NAME } from "@/site.config";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={`${t("about.metaTitle")} — ${SITE_NAME}`}
+  description={t("about.description")}
+  lang={lang}
+>
+  <Navbar
+    lang={lang}
+    labels={{
+      home: t("nav.home"),
+      about: t("nav.about"),
+      contact: t("nav.contact"),
+    }}
+    client:load
+  />
+  <main class="pt-32 pb-20">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        {t("about.heading")}
+      </h1>
+      <p class="text-lg text-muted-foreground mb-8">
+        {t("about.subheading")}
+      </p>
+
+      <div class="prose prose-neutral dark:prose-invert max-w-none">
+        <p>
+          This is a starter template — replace this content with your own story,
+          mission, or team introduction.
+        </p>
+        <h2>What's included</h2>
+        <ul>
+          <li><a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro 6</a> with static site generation</li>
+          <li><a href="https://react.dev" target="_blank" rel="noopener noreferrer">React</a> islands for interactive components</li>
+          <li><a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS 4</a> with OKLch design tokens</li>
+          <li><a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">shadcn/ui</a> component library</li>
+          <li>Dark / light mode with system preference detection</li>
+          <li>i18n-ready translation system</li>
+          <li>SEO optimised with <a href="https://ogp.me" target="_blank" rel="noopener noreferrer">Open Graph</a>, <a href="https://json-ld.org" target="_blank" rel="noopener noreferrer">JSON-LD</a>, and sitemap</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>
