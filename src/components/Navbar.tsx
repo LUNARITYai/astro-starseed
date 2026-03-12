@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
-import { Menu, X } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
+import { Menu, X, Moon, Sun, Monitor } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/i18n/ui";
 
@@ -47,6 +48,10 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
   const [pathname, setPathname] = useState("");
 
   const navLinks = buildNavLinks(lang, labels);
+  const { preference, toggleTheme, mounted } = useTheme();
+
+  const ThemeIcon =
+    preference === "system" ? Monitor : preference === "dark" ? Moon : Sun;
 
   useEffect(() => {
     setPathname(window.location.pathname);
@@ -102,6 +107,14 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="cursor-pointer text-foreground/50 hover:text-foreground transition-colors duration-200 focus-visible:outline-none"
+          >
+            {mounted && <ThemeIcon className="size-4" />}
+          </button>
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -167,6 +180,14 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
                     {link.name}
                   </a>
                 ))}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                  className="flex min-h-14 items-center justify-center cursor-pointer text-foreground/75 hover:text-foreground transition-colors duration-200 focus-visible:outline-none"
+                >
+                  {mounted && <ThemeIcon className="size-6" />}
+                </button>
               </div>
             </div>
           </motion.div>

@@ -2,13 +2,13 @@ import { test, expect } from "@playwright/test";
 
 test("homepage loads and has correct title", async ({ page }) => {
   await page.goto("/");
-  await expect(page).toHaveTitle(/LUNARITY/);
+  await expect(page).toHaveTitle(/Astro Starseed/);
 });
 
 test("mobile viewport is applied correctly", async ({ page }, testInfo) => {
   test.skip(
     testInfo.project.name !== "chromium-mobile",
-    "Mobile-only test — skipping on desktop",
+    "Mobile-only test — skipping on desktop"
   );
 
   await page.goto("/");

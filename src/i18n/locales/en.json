@@ -24,6 +24,12 @@
   "meta": {
     "defaultDescription": "Built with Astro, React, and Shadcn UI"
   },
+  "about": {
+    "metaTitle": "About",
+    "description": "Learn more about who we are and what we do.",
+    "heading": "About",
+    "subheading": "Learn more about who we are and what drives us."
+  },
   "contact": {
     "metaTitle": "Contact",
     "description": "Get in touch. Send a message or start a conversation.",

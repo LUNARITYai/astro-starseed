@@ -1,45 +1,80 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export type Theme = "light" | "dark";
+export type ThemePreference = "light" | "dark" | "system";
+
+function getSystemTheme(): Theme {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function applyDOM(theme: Theme) {
+  const root = document.documentElement;
+  root.classList.remove("light", "dark");
+  root.classList.add(theme);
+}
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [preference, setPreference] = useState<ThemePreference>("system");
+  const [resolved, setResolved] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    // Check localStorage or system preference
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      updateDOM(savedTheme);
-    } else {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-      setTheme(systemTheme);
-      updateDOM(systemTheme);
-    }
+  const resolve = useCallback((pref: ThemePreference): Theme => {
+    return pref === "system" ? getSystemTheme() : pref;
   }, []);
 
-  const updateDOM = (mode: Theme) => {
-    const root = document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(mode);
-    localStorage.setItem("theme", mode);
-  };
+  // Initialise from localStorage
+  useEffect(() => {
+    const saved = (localStorage.getItem("theme") as ThemePreference) || "system";
+    const theme = resolve(saved);
+    setPreference(saved);
+    setResolved(theme);
+    applyDOM(theme);
+    setMounted(true);
+  }, [resolve]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    updateDOM(newTheme);
-  };
+  // Listen for OS theme changes when preference is "system"
+  useEffect(() => {
+    if (preference !== "system") return;
 
-  const setThemeMode = (mode: Theme) => {
-    setTheme(mode);
-    updateDOM(mode);
-  };
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = (e: MediaQueryListEvent) => {
+      const theme = e.matches ? "dark" : "light";
+      setResolved(theme);
+      applyDOM(theme);
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [preference]);
 
-  return { theme, toggleTheme, setTheme: setThemeMode, mounted };
+  const setThemePreference = useCallback(
+    (pref: ThemePreference) => {
+      const theme = resolve(pref);
+      setPreference(pref);
+      setResolved(theme);
+      applyDOM(theme);
+      localStorage.setItem("theme", pref);
+    },
+    [resolve],
+  );
+
+  // Cycles: system → light → dark → system
+  const toggleTheme = useCallback(() => {
+    const next: ThemePreference =
+      preference === "system"
+        ? "light"
+        : preference === "light"
+          ? "dark"
+          : "system";
+    setThemePreference(next);
+  }, [preference, setThemePreference]);
+
+  return {
+    theme: resolved,
+    preference,
+    toggleTheme,
+    setTheme: setThemePreference,
+    mounted,
+  };
 };
