@@ -12,19 +12,19 @@ A modern Astro starter template by [LUNARITY](https://lunarity.ai) — productio
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [Astro 5](https://astro.build) |
-| UI | [React 19](https://react.dev) + [shadcn/ui](https://ui.shadcn.com) |
-| Styling | [Tailwind CSS 4](https://tailwindcss.com) · OKLch design tokens |
-| Animations | [Framer Motion 12](https://www.framer.com/motion/) |
-| Icons | [Lucide React](https://lucide.dev) |
-| Forms | [React Hook Form](https://react-hook-form.com) + [Zod](https://zod.dev) |
-| Content | [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) + MDX |
-| Testing | [Playwright](https://playwright.dev) (E2E) |
-| Language | TypeScript (strict) |
-| Package manager | pnpm |
-| Node | 22.x |
+| Layer           | Technology                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| Framework       | [Astro 5](https://astro.build)                                                             |
+| UI              | [React 19](https://react.dev) + [shadcn/ui](https://ui.shadcn.com)                         |
+| Styling         | [Tailwind CSS 4](https://tailwindcss.com) · OKLch design tokens                            |
+| Animations      | [Framer Motion 12](https://www.framer.com/motion/)                                         |
+| Icons           | [Lucide React](https://lucide.dev)                                                         |
+| Forms           | [React Hook Form](https://react-hook-form.com) + [Zod](https://zod.dev)                    |
+| Content         | [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) + MDX |
+| Testing         | [Playwright](https://playwright.dev) (E2E)                                                 |
+| Language        | TypeScript (strict)                                                                        |
+| Package manager | pnpm                                                                                       |
+| Node            | 22.x                                                                                       |
 
 ## Features
 

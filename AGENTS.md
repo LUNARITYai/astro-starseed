@@ -32,19 +32,19 @@ pnpm test:e2e:install # Install Chromium for Playwright
 
 ### File map
 
-| Path | Purpose |
-|---|---|
-| `src/layouts/Layout.astro` | Single base layout (SEO, JSON-LD, Navbar, Footer) |
-| `src/site.config.ts` | Global metadata — import from here, never hardcode |
-| `src/styles/global.css` | Tailwind + OKLch CSS variable design tokens |
-| `src/components/ui/` | shadcn/ui primitives — use CLI to add/update, do not edit manually |
-| `src/components/` | Custom components |
-| `src/lib/utils.ts` | `cn()` helper (clsx + tailwind-merge) |
-| `src/hooks/useTheme.ts` | Dark/light mode — `.dark` class on `<html>` |
-| `src/i18n/ui.ts` | i18n helpers: `getLangFromUrl`, `useTranslations`, `getLocalizedPath` |
-| `src/i18n/locales/<lang>.json` | Translation files |
-| `src/content/config.ts` | Content collection schemas (Zod) |
-| `astro.config.mjs` | Astro config, integrations, i18n routing |
+| Path                           | Purpose                                                               |
+| ------------------------------ | --------------------------------------------------------------------- |
+| `src/layouts/Layout.astro`     | Single base layout (SEO, JSON-LD, Navbar, Footer)                     |
+| `src/site.config.ts`           | Global metadata — import from here, never hardcode                    |
+| `src/styles/global.css`        | Tailwind + OKLch CSS variable design tokens                           |
+| `src/components/ui/`           | shadcn/ui primitives — use CLI to add/update, do not edit manually    |
+| `src/components/`              | Custom components                                                     |
+| `src/lib/utils.ts`             | `cn()` helper (clsx + tailwind-merge)                                 |
+| `src/hooks/useTheme.ts`        | Dark/light mode — `.dark` class on `<html>`                           |
+| `src/i18n/ui.ts`               | i18n helpers: `getLangFromUrl`, `useTranslations`, `getLocalizedPath` |
+| `src/i18n/locales/<lang>.json` | Translation files                                                     |
+| `src/content/config.ts`        | Content collection schemas (Zod)                                      |
+| `astro.config.mjs`             | Astro config, integrations, i18n routing                              |
 
 ### Key rules
 

@@ -7,18 +7,18 @@ Package manager: **pnpm only**. Runtime: **Node 22.x**.
 
 ## Key paths
 
-| Path | Purpose |
-|---|---|
-| `src/layouts/Layout.astro` | Base layout (SEO, JSON-LD, Navbar, Footer) |
-| `src/site.config.ts` | Global metadata — always import from here |
-| `src/styles/global.css` | Tailwind + OKLch CSS variable tokens |
-| `src/components/ui/` | shadcn/ui primitives (CLI-managed, do not edit) |
-| `src/components/` | Custom components |
-| `src/lib/utils.ts` | `cn()` — use for all class merging |
-| `src/hooks/useTheme.ts` | Dark/light mode |
-| `src/i18n/ui.ts` | i18n helpers |
-| `src/i18n/locales/` | Translation JSON files |
-| `src/content/config.ts` | Content collection schemas (Zod) |
+| Path                       | Purpose                                         |
+| -------------------------- | ----------------------------------------------- |
+| `src/layouts/Layout.astro` | Base layout (SEO, JSON-LD, Navbar, Footer)      |
+| `src/site.config.ts`       | Global metadata — always import from here       |
+| `src/styles/global.css`    | Tailwind + OKLch CSS variable tokens            |
+| `src/components/ui/`       | shadcn/ui primitives (CLI-managed, do not edit) |
+| `src/components/`          | Custom components                               |
+| `src/lib/utils.ts`         | `cn()` — use for all class merging              |
+| `src/hooks/useTheme.ts`    | Dark/light mode                                 |
+| `src/i18n/ui.ts`           | i18n helpers                                    |
+| `src/i18n/locales/`        | Translation JSON files                          |
+| `src/content/config.ts`    | Content collection schemas (Zod)                |
 
 ## Coding rules
 
