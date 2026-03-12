@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME } from "@/site.config";
+import { SITE_NAME, SITE_AUTHOR, SITE_AUTHOR_URL } from "@/site.config";
 import { useTranslations, getLocalizedPath, type Locale } from "@/i18n/ui";
 
 interface Props {
@@ -73,7 +73,14 @@ const navLinks = [
     >
       <div class="text-xs text-muted-foreground/60 order-2 sm:order-1">
         &copy; {new Date().getFullYear()}
-        {SITE_NAME}
+        {SITE_NAME} by <a
+          href={SITE_AUTHOR_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-muted-foreground transition-colors duration-150 ease-out"
+        >
+          {SITE_AUTHOR}
+        </a>
       </div>
       <div class="text-xs text-muted-foreground/60 order-1 sm:order-2">
         {t("footer.allRightsReserved")}

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("homepage loads and has correct title", async ({ page }) => {
   await page.goto("/");
-  await expect(page).toHaveTitle(/Light Starseed/);
+  await expect(page).toHaveTitle(/Astro Starseed/);
 });
 
 test("mobile viewport is applied correctly", async ({ page }, testInfo) => {
