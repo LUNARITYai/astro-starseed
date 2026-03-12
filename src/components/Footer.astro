@@ -1,71 +1,16 @@
 ---
 import { SITE_NAME, SITE_AUTHOR, SITE_AUTHOR_URL } from "@/site.config";
-import { useTranslations, getLocalizedPath, type Locale } from "@/i18n/ui";
+import { useTranslations, type Locale } from "@/i18n/ui";
 
 interface Props {
   lang?: Locale;
-  hideBorder?: boolean;
 }
 
-const { lang = "en", hideBorder = false } = Astro.props;
+const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
-
-const navLinks = [
-  { name: t("nav.home"), href: getLocalizedPath("/", lang) },
-  { name: t("nav.about"), href: getLocalizedPath("/about", lang) },
-  { name: t("nav.contact"), href: getLocalizedPath("/contact", lang) },
-];
 ---
 
 <footer class="bg-background mt-auto print:hidden">
-  <div class:list={[{ "border-t border-border": !hideBorder }]}>
-    <div class="container mx-auto px-4 py-16">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-8">
-        <!-- Contact -->
-        <div class="footer-animate">
-          <h3
-            class="text-sm font-semibold text-foreground uppercase tracking-wider mb-6"
-          >
-            {t("footer.contact")}
-          </h3>
-          <ul class="space-y-4 text-sm">
-            <li>
-              <a
-                href="mailto:hello@example.com"
-                class="text-muted-foreground opacity-85 hover:opacity-100 hover:text-foreground transition-[opacity,color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              >
-                hello@example.com
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Navigation -->
-        <div class="footer-animate">
-          <h3
-            class="text-sm font-semibold text-foreground uppercase tracking-wider mb-6"
-          >
-            {t("footer.navigation")}
-          </h3>
-          <ul class="space-y-4 text-sm">
-            {
-              navLinks.map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="text-muted-foreground opacity-85 hover:opacity-100 hover:text-foreground transition-[opacity,color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Bottom bar -->
   <div class="border-t border-border">
     <div
@@ -86,35 +31,4 @@ const navLinks = [
       </div>
     </div>
   </div>
-
-  <script>
-    const blocks = document.querySelectorAll<HTMLElement>(
-      "footer .footer-animate"
-    );
-
-    blocks.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(16px)";
-      el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const index = Array.from(blocks).indexOf(el);
-            setTimeout(() => {
-              el.style.opacity = "1";
-              el.style.transform = "translateY(0)";
-            }, index * 80);
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
-    );
-
-    blocks.forEach((el) => observer.observe(el));
-  </script>
 </footer>
