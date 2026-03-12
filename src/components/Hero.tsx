@@ -5,9 +5,10 @@ import { ArrowRight } from "lucide-react";
 interface HeroProps {
   badge?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   ctaText: string;
   ctaLink: string;
+  children?: React.ReactNode;
 }
 
 export const Hero = ({
@@ -16,6 +17,7 @@ export const Hero = ({
   subtitle,
   ctaText,
   ctaLink,
+  children,
 }: HeroProps) => {
   return (
     <section
@@ -53,7 +55,7 @@ export const Hero = ({
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-xl text-muted-foreground w-full max-w-2xl mx-auto mb-10"
         >
-          {subtitle}
+          {children || subtitle}
         </motion.p>
 
         <motion.div

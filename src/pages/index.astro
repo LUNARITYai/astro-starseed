@@ -23,11 +23,36 @@ const t = useTranslations(lang);
   <main>
     <Hero
       title={SITE_NAME}
-      subtitle={SITE_TAGLINE}
-      ctaText={t("nav.contact")}
-      ctaLink="/contact"
+      ctaText="About"
+      ctaLink="/about"
       client:load
-    />
+    >
+      Built with
+      <a
+        href="https://astro.build"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-bold hover:text-primary transition-colors"
+      >
+        Astro
+      </a>,
+      <a
+        href="https://react.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-bold hover:text-primary transition-colors"
+      >
+        React
+      </a>, and
+      <a
+        href="https://ui.shadcn.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-bold hover:text-primary transition-colors"
+      >
+        Shadcn UI
+      </a>
+    </Hero>
   </main>
   <Footer lang={lang} />
 </Layout>

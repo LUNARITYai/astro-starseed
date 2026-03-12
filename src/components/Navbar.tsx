@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { useTheme } from "@/hooks/useTheme";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, Monitor } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/i18n/ui";
 
@@ -48,8 +48,10 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
   const [pathname, setPathname] = useState("");
 
   const navLinks = buildNavLinks(lang, labels);
-  const { theme, toggleTheme, mounted } = useTheme();
-  const isDark = !mounted || theme === "dark";
+  const { preference, toggleTheme, mounted } = useTheme();
+
+  const ThemeIcon =
+    preference === "system" ? Monitor : preference === "dark" ? Moon : Sun;
 
   useEffect(() => {
     setPathname(window.location.pathname);
@@ -111,7 +113,7 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
             aria-label="Toggle theme"
             className="cursor-pointer text-foreground/50 hover:text-foreground transition-colors duration-200 focus-visible:outline-none"
           >
-            {isDark ? <Moon className="size-4" /> : <Sun className="size-4" />}
+            {mounted && <ThemeIcon className="size-4" />}
           </button>
           {navLinks.map((link) => (
             <a
@@ -184,7 +186,7 @@ export const Navbar = ({ lang = "en", labels }: NavbarProps) => {
                   aria-label="Toggle theme"
                   className="flex min-h-14 items-center justify-center cursor-pointer text-foreground/75 hover:text-foreground transition-colors duration-200 focus-visible:outline-none"
                 >
-                  {isDark ? <Moon className="size-6" /> : <Sun className="size-6" />}
+                  {mounted && <ThemeIcon className="size-6" />}
                 </button>
               </div>
             </div>
