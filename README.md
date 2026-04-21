@@ -47,6 +47,69 @@ pnpm install
 pnpm dev
 ```
 
+## Recommended AI Setup
+
+For AI-assisted workflows with `shadcn/ui`, configure the official shadcn MCP
+server for your client. If you use Codex, also install the shadcn Codex skill.
+
+### Codex
+
+1. Install the Codex skill:
+
+```bash
+pnpm dlx skills add shadcn/ui
+```
+
+2. Add the shadcn MCP server to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+```
+
+### Claude Code
+
+Add the shadcn MCP server to your project `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+Restart Claude Code, then run `/mcp` to confirm the server is connected.
+
+### Gemini CLI
+
+Add the shadcn MCP server to your project `.gemini/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+You can also add it via the Gemini CLI:
+
+```bash
+gemini mcp add shadcn npx shadcn@latest mcp
+```
+
+Sources:
+- shadcn MCP docs: https://ui.shadcn.com/docs/mcp#configuration
+- Gemini CLI MCP docs: https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html
+
 ## Scripts
 
 ```bash

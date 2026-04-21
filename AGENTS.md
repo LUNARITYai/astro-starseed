@@ -53,6 +53,7 @@ pnpm test:e2e:install # Install Chromium for Playwright
 - Astro components (`.astro`) for static content; React (`.tsx`) for interactive elements.
 - React islands must use Astro client directives: `client:load`, `client:visible`, etc.
 - All shadcn/ui components are added via `pnpm dlx shadcn add <component>`.
+- For AI-assisted shadcn workflows, use the shadcn MCP server. Codex uses `~/.codex/config.toml`, Claude Code uses project `.mcp.json`, and Gemini CLI uses `.gemini/settings.json`. Codex should also install `pnpm dlx skills add shadcn/ui`.
 - TypeScript strict mode is on — all code must be properly typed.
 
 ### i18n

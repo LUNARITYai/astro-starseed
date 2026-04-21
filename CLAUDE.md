@@ -34,6 +34,7 @@ Hybrid Astro + React: Astro handles static generation and routing; React compone
 - **Site config** — global metadata (site name, URL, description) lives in `src/site.config.ts`. Import from here instead of hardcoding strings.
 - **Styling** — Tailwind CSS 4 via `@tailwindcss/vite`. Design tokens are OKLch CSS variables in `src/styles/global.css` (`:root` + `.dark`). All shadcn/ui components consume these variables automatically. Do not add raw hex colors — extend the token system.
 - **Components** — `src/components/ui/` contains shadcn/ui primitives (do not edit manually; use the shadcn CLI to add/update). Custom components live directly in `src/components/`.
+- **AI setup** — for shadcn MCP in Claude Code, add the server to the project `.mcp.json` with `command: "npx"` and `args: ["shadcn@latest", "mcp"]`. Codex uses `~/.codex/config.toml` plus `pnpm dlx skills add shadcn/ui`; Gemini CLI uses `.gemini/settings.json`.
 - **Utilities** — `src/lib/utils.ts` exports `cn()` (clsx + tailwind-merge). Always use `cn()` for conditional class merging.
 - **Theming** — `src/hooks/useTheme.ts` manages dark/light mode. State is stored in `localStorage` and applied via the `.dark` class on `<html>`.
 

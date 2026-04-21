@@ -38,6 +38,7 @@
 - **Design Tokens:** Defined as CSS variables in `src/styles/global.css` using the `oklch()` color space.
 - **Dark Mode:** Managed via `src/hooks/useTheme.ts`. The `.dark` class is applied to the `<html>` element.
 - **shadcn/ui:** Located in `src/components/ui/`. These are primitives; do not modify unless necessary.
+- **AI Setup:** For Gemini CLI, add the shadcn MCP server to `.gemini/settings.json` with `command: "npx"` and `args: ["shadcn@latest", "mcp"]`, or run `gemini mcp add shadcn npx shadcn@latest mcp`. Claude Code uses project `.mcp.json`; Codex uses `~/.codex/config.toml` plus `pnpm dlx skills add shadcn/ui`.
 
 ### 3. Internationalization (i18n)
 
