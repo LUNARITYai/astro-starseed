@@ -22,8 +22,10 @@
 | `pnpm build`       | Generate production build in `dist/`                |
 | `pnpm preview`     | Preview the production build locally                |
 | `pnpm format`      | Format the entire codebase using Prettier           |
+| `pnpm format:check`| Check formatting without modifying files            |
 | `pnpm test:e2e`    | Run Playwright E2E tests (headless)                 |
 | `pnpm test:e2e:ui` | Run Playwright tests with the UI runner             |
+| `pnpm test:e2e:install` | Install required browser binaries for Playwright|
 
 ## Development Conventions
 
@@ -37,31 +39,41 @@
 - **Tailwind 4:** Configured via Vite plugin.
 - **Design Tokens:** Defined as CSS variables in `src/styles/global.css` using the `oklch()` color space.
 - **Dark Mode:** Managed via `src/hooks/useTheme.ts`. The `.dark` class is applied to the `<html>` element.
-- **shadcn/ui:** Located in `src/components/ui/`. These are primitives; do not modify unless necessary.
-- **AI Setup:** For Gemini CLI, add the shadcn MCP server to `.gemini/settings.json` with `command: "npx"` and `args: ["shadcn@latest", "mcp"]`, or run `gemini mcp add shadcn npx shadcn@latest mcp`. Claude Code uses project `.mcp.json`; Codex uses `~/.codex/config.toml` plus `pnpm dlx skills add shadcn/ui`.
+- **shadcn/ui:** Located in `src/components/ui/`. Use `pnpm dlx shadcn add <component>` to add new ones.
+- **Utility:** Use the `cn()` helper from `src/lib/utils.ts` for all conditional class merging.
 
-### 3. Internationalization (i18n)
+### 3. AI Setup & Workflow
+
+- **Gemini CLI:** Add the shadcn MCP server to `.gemini/settings.json` with `command: "npx"` and `args: ["shadcn@latest", "mcp"]`, or run `gemini mcp add shadcn npx shadcn@latest mcp`.
+- **Claude Code:** Uses the project's `.mcp.json`.
+- **Skills:** For agents supporting skills, use `pnpm dlx skills add shadcn/ui` to enable specialized UI component management.
+
+### 4. Internationalization (i18n)
 
 - **Locale Data:** JSON files in `src/i18n/locales/`.
 - **Helpers:** Use `useTranslations(lang)` and `getLocalizedPath(path, locale)` from `src/i18n/ui.ts`.
-- **Routing:** Default locale (`en`) has no prefix; other locales are prefixed (e.g., `/fr/`).
+- **Routing:** Default locale (`en`) has no prefix; other locales are prefixed (e.g., `/pl/`).
 
-### 4. Configuration
+### 5. Configuration
 
 - **Site Metadata:** Always import from `src/site.config.ts` (e.g., `SITE_NAME`, `SITE_TAGLINE`) instead of hardcoding strings in templates.
 - **Astro Config:** Managed in `astro.config.mjs`, including i18n routing and integrations.
+- **Content Collections:** Defined in `src/content.config.ts` using the Astro 6 Loader API.
 
-### 5. Code Quality
+### 6. Code Quality
 
 - **TypeScript:** Strict mode is enabled. Ensure all components and utilities are properly typed.
 - **Prettier:** Run `pnpm format` before committing. Prettier handles Astro, CSS, and TS/TSX files.
-- **Testing:** New features should include E2E tests in the `tests/` directory (if applicable).
+- **Testing:** New features should include E2E tests in the `e2e/tests/` directory.
 
 ## Key File Map
 
 - `src/layouts/Layout.astro`: The primary base layout wrapper.
 - `src/components/ui/`: shadcn/ui base components.
+- `src/lib/utils.ts`: Core utility functions, including `cn()`.
 - `src/i18n/ui.ts`: Core translation and routing logic.
+- `src/content.config.ts`: Content collection schemas and loaders.
 - `src/styles/global.css`: Tailwind imports and CSS variable design tokens.
 - `src/site.config.ts`: Global site configuration.
 - `astro.config.mjs`: Astro framework and integration settings.
+- `e2e/tests/`: Playwright E2E test files.
