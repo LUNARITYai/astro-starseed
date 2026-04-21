@@ -2,10 +2,10 @@
 
 ## Overview
 
-**Astro Starseed** is a high-performance Astro 5 starter template by [LUNARITY](https://lunarity.ai).
+**Astro Starseed** is a high-performance Astro 6 starter template by [LUNARITY](https://lunarity.ai).
 Hybrid rendering: Astro for static generation, React 19 for interactive islands.
 
-- **Framework:** Astro 5 (Hybrid mode)
+- **Framework:** Astro 6 (Hybrid mode)
 - **UI:** React 19 + shadcn/ui (Radix primitives)
 - **Styling:** Tailwind CSS 4 via `@tailwindcss/vite`, OKLch design tokens
 - **Animations:** Framer Motion 12
