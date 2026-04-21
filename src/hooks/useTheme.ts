@@ -26,7 +26,8 @@ export const useTheme = () => {
 
   // Initialise from localStorage
   useEffect(() => {
-    const saved = (localStorage.getItem("theme") as ThemePreference) || "system";
+    const saved =
+      (localStorage.getItem("theme") as ThemePreference) || "system";
     const theme = resolve(saved);
     setPreference(saved);
     setResolved(theme);
@@ -56,7 +57,7 @@ export const useTheme = () => {
       applyDOM(theme);
       localStorage.setItem("theme", pref);
     },
-    [resolve],
+    [resolve]
   );
 
   // Cycles: system → light → dark → system

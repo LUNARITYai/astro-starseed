@@ -12,19 +12,19 @@ A modern Astro starter template by [LUNARITY](https://lunarity.ai) — productio
 
 ## Stack
 
-| Layer           | Technology                                                                                 |
-| --------------- | ------------------------------------------------------------------------------------------ |
-| Framework       | [Astro 6](https://astro.build)                                                             |
-| UI              | [React 19](https://react.dev) + [shadcn/ui](https://ui.shadcn.com)                         |
-| Styling         | [Tailwind CSS 4](https://tailwindcss.com) · OKLch design tokens                            |
-| Animations      | [Framer Motion 12](https://www.framer.com/motion/)                                         |
-| Icons           | [Lucide React](https://lucide.dev)                                                         |
-| Forms           | [React Hook Form](https://react-hook-form.com) + [Zod](https://zod.dev)                    |
-| Content         | [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) + MDX |
-| Testing         | [Playwright](https://playwright.dev) (E2E)                                                 |
-| Language        | TypeScript (strict)                                                                        |
-| Package manager | pnpm                                                                                       |
-| Node            | 22.x                                                                                       |
+| Layer           | Technology                                                                                                                                                                                                                                   |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework       | <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro 6</a>                                                                                                                                                          |
+| UI              | <a href="https://react.dev" target="_blank" rel="noopener noreferrer">React 19</a> + <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">shadcn/ui</a>                                                                 |
+| Styling         | <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS 4</a> · <a href="https://developer.mozilla.org/en/docs/Web/CSS/color_value/oklch" target="_blank" rel="noopener noreferrer">OKLch</a> design tokens |
+| Animations      | <a href="https://www.framer.com/motion/" target="_blank" rel="noopener noreferrer">Framer Motion 12</a>                                                                                                                                      |
+| Icons           | <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer">Lucide React</a>                                                                                                                                                      |
+| Forms           | <a href="https://react-hook-form.com" target="_blank" rel="noopener noreferrer">React Hook Form</a> + <a href="https://zod.dev" target="_blank" rel="noopener noreferrer">Zod</a>                                                            |
+| Content         | <a href="https://docs.astro.build/en/guides/content-collections/" target="_blank" rel="noopener noreferrer">Astro Content Collections</a> + <a href="https://mdxjs.com/docs/" target="_blank" rel="noopener noreferrer">MDX</a>              |
+| Testing         | <a href="https://playwright.dev" target="_blank" rel="noopener noreferrer">Playwright</a> (E2E)                                                                                                                                              |
+| Language        | <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener noreferrer">TypeScript</a> (strict)                                                                                                                             |
+| Package manager | <a href="https://pnpm.io/" target="_blank" rel="noopener noreferrer">pnpm</a>                                                                                                                                                                |
+| Node            | <a href="https://nodejs.org/en/docs" target="_blank" rel="noopener noreferrer">Node 22.x</a> (LTS)                                                                                                                                           |
 
 ## Features
 
@@ -107,6 +107,7 @@ gemini mcp add shadcn npx shadcn@latest mcp
 ```
 
 Sources:
+
 - shadcn MCP docs: https://ui.shadcn.com/docs/mcp#configuration
 - Gemini CLI MCP docs: https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html
 

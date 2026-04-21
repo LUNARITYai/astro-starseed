@@ -15,17 +15,17 @@
 
 ## Building and Running
 
-| Command            | Description                                         |
-| ------------------ | --------------------------------------------------- |
-| `pnpm install`     | Install all dependencies                            |
-| `pnpm dev`         | Start development server at `http://localhost:4321` |
-| `pnpm build`       | Generate production build in `dist/`                |
-| `pnpm preview`     | Preview the production build locally                |
-| `pnpm format`      | Format the entire codebase using Prettier           |
-| `pnpm format:check`| Check formatting without modifying files            |
-| `pnpm test:e2e`    | Run Playwright E2E tests (headless)                 |
-| `pnpm test:e2e:ui` | Run Playwright tests with the UI runner             |
-| `pnpm test:e2e:install` | Install required browser binaries for Playwright|
+| Command                 | Description                                         |
+| ----------------------- | --------------------------------------------------- |
+| `pnpm install`          | Install all dependencies                            |
+| `pnpm dev`              | Start development server at `http://localhost:4321` |
+| `pnpm build`            | Generate production build in `dist/`                |
+| `pnpm preview`          | Preview the production build locally                |
+| `pnpm format`           | Format the entire codebase using Prettier           |
+| `pnpm format:check`     | Check formatting without modifying files            |
+| `pnpm test:e2e`         | Run Playwright E2E tests (headless)                 |
+| `pnpm test:e2e:ui`      | Run Playwright tests with the UI runner             |
+| `pnpm test:e2e:install` | Install required browser binaries for Playwright    |
 
 ## Development Conventions
 
