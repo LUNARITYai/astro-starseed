@@ -1,14 +1,6 @@
 # Astro Starseed
 
-<p align="center">
-  <img src="docs/images/banner.png" alt="Astro Starseed banner" width="100%" />
-</p>
-
 A modern Astro starter template by [LUNARITY](https://lunarity.ai) — production-ready, opinionated, and built for speed.
-
-<p align="center">
-  <img src="docs/images/preview.png" alt="Astro Starseed preview" width="100%" />
-</p>
 
 ## Stack
 
